@@ -1,7 +1,7 @@
 /* ParcelApp Lovelace Card (Shadow DOM isolated) */
 (() => {
   const TAG = "parcelapp-card";
-  const VERSION = "20260401.01";
+  const VERSION = "20260401.02";
 
   console.debug(`ParcelApp Card ${VERSION} loaded`);
 
@@ -14,9 +14,23 @@
       this._expandedKeys = new Set();
     }
 
-    setConfig(config) {
-      if (!config || !config.entity) throw new Error("You need to set entity:");
+    _warn(msg, ...args) {
+      console.warn(`[ParcelApp Card ${VERSION}] ${msg}`, ...args);
+    }
 
+    setConfig(config) {
+      if (!config) throw new Error("ParcelApp Card: no config provided");
+
+      try {
+        this._applyConfig(config);
+      } catch (err) {
+        this._warn("setConfig failed — config received:", config);
+        this._warn("Error details:", err);
+        throw err;
+      }
+    }
+
+    _applyConfig(config) {
       this._config = {
         ...config,
 
@@ -41,7 +55,6 @@
 
       if (!this._root) {
         this._root = this.attachShadow({ mode: "open" });
-
         this._root.innerHTML = `
           <style>
             :host { display:block; }
@@ -275,26 +288,56 @@
           </ha-card>
         `;
 
+        // Assign element refs once, immediately after shadow DOM is created
         this._headerEl = this._root.querySelector(".header");
-        this._wrapEl = this._root.querySelector(".wrap");
+        this._wrapEl   = this._root.querySelector(".wrap");
       }
 
-      this._headerEl.textContent = this._config.title || "";
-      this._wrapEl.classList.toggle("compact", !!this._config.compact);
+      // Safely update header and compact class — guard against any unexpected null
+      if (this._headerEl) {
+        this._headerEl.textContent = this._config.title || "";
+      }
+      if (this._wrapEl) {
+        this._wrapEl.classList.toggle("compact", !!this._config.compact);
+      }
     }
 
     set hass(hass) {
       if (!this._config || !this._wrapEl) return;
 
-      const entity = hass.states[this._config.entity];
+      try {
+        this._renderHass(hass);
+      } catch (err) {
+        const entity = hass?.states?.[this._config?.entity];
+        this._warn("Render error — config:", this._config);
+        this._warn("Render error — entity state:", entity ?? "(not found)");
+        this._warn("Error details:", err);
+        this._wrapEl.innerHTML = `<div class="empty">Render error — check browser console</div>`;
+      }
+    }
 
-      if (!entity) {
-        this._wrapEl.innerHTML = `<div class="empty">Entity not found</div>`;
+    _renderHass(hass) {
+
+      if (!this._config.entity) {
+        this._wrapEl.innerHTML = `<div class="empty">Set <code>entity:</code> in card config</div>`;
         return;
       }
 
-      const deliveries = entity.attributes.deliveries || [];
-      let list = [...deliveries];
+      const entity = hass.states[this._config.entity];
+
+      if (!entity) {
+        this._wrapEl.innerHTML = `<div class="empty">Entity not found: ${this._escape(this._config.entity)}</div>`;
+        return;
+      }
+
+      const deliveries = entity.attributes.deliveries;
+      if (!Array.isArray(deliveries)) {
+        this._warn(
+          `Entity '${this._config.entity}' has no 'deliveries' array attribute.`,
+          "attributes:", entity.attributes
+        );
+      }
+      let list = [...(Array.isArray(deliveries) ? deliveries : [])];
 
       // Filters
       if (this._config.hide_delivered) {
