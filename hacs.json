@@ -1,7 +1,6 @@
 {
   "name": "ParcelApp Card",
   "render_readme": true,
-  "content_in_root": true
+  "content_in_root": true,
   "filename": "parcelapp_card.js"
-
 }
