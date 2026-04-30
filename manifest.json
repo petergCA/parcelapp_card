@@ -1,11 +1,7 @@
 {
-  "domain": "parcelapp_card",
   "name": "ParcelApp Card",
   "version": "0.1.1",
-  "documentation": "https://github.com/peterlgray/ha-parcelapp-card",
-  "dependencies": [],
-  "codeowners": ["@peterlgray"],
-  "issue_tracker": "https://github.com/peterlgray/ha-parcelapp-card/issues",
-  "requirements": [],
-  "iot_class": "local_push"
+  "documentation": "https://github.com/petergCA/parcelapp_card",
+  "codeowners": ["@petergCA"],
+  "issue_tracker": "https://github.com/petergCA/parcelapp_card/issues"
 }
