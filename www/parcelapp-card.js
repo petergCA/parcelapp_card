@@ -1,7 +1,7 @@
 /* ParcelApp Lovelace Card (Shadow DOM isolated) */
 (() => {
   const TAG = "parcelapp-card";
-  const VERSION = "20260401.02";
+  const VERSION = "20260416.01";
 
   console.debug(`ParcelApp Card ${VERSION} loaded`);
 
@@ -577,6 +577,7 @@
       if (code === "speedx") return "/parcelapp_card/parcel_app_images/speedx_v2.png";
       if (code === "uniuni") return "/parcelapp_card/parcel_app_images/uniuni.png";
       if (code === "ontrac") return "/parcelapp_card/parcel_app_images/ontrac.png";
+      if (code === "ont") return "/parcelapp_card/parcel_app_images/ontrac.png";
       if (code === "gso") return "/parcelapp_card/parcel_app_images/gls.png";
       if (code === "yun" || code === "yunexpress") return "/parcelapp_card/parcel_app_images/yunexpress.png";
 
@@ -599,6 +600,8 @@
         case "fedex":
           return `https://www.fedex.com/fedextrack/?trknbr=${t}`;
         case "ontrac":
+          return `https://www.ontrac.com/trackingres.asp?tracking_number=${t}`;
+        case "ont":
           return `https://www.ontrac.com/trackingres.asp?tracking_number=${t}`;
         case "uniuni":
           return `https://www.ordertracker.com/track/${t}`;
