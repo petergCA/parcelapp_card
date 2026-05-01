@@ -562,26 +562,28 @@
     }
 
     _carrierIcon(delivery) {
+      const base = "/local/community/parcelapp_card/parcel_app_images";
+
       if (this._isDelivered(delivery)) {
-        return "/parcelapp_card/parcel_app_images/delivered.png";
+        return `${base}/delivered.png`;
       }
 
       const code = String(delivery.carrier_code || "").toLowerCase().trim();
 
-      if (code === "ups") return "/parcelapp_card/parcel_app_images/ups.png";
-      if (code === "usps") return "/parcelapp_card/parcel_app_images/usps.jpg";
-      if (code === "fedex") return "/parcelapp_card/parcel_app_images/fedex.png";
-      if (code === "amzlus") return "/parcelapp_card/parcel_app_images/amazon_orange_v3.png";
-      if (code === "gofous") return "/parcelapp_card/parcel_app_images/gofous.png";
-      if (code === "abf") return "/parcelapp_card/parcel_app_images/abf.png";
-      if (code === "speedx") return "/parcelapp_card/parcel_app_images/speedx_v2.png";
-      if (code === "uniuni") return "/parcelapp_card/parcel_app_images/uniuni.png";
-      if (code === "ontrac") return "/parcelapp_card/parcel_app_images/ontrac.png";
-      if (code === "ont") return "/parcelapp_card/parcel_app_images/ontrac.png";
-      if (code === "gso") return "/parcelapp_card/parcel_app_images/gls.png";
-      if (code === "yun" || code === "yunexpress") return "/parcelapp_card/parcel_app_images/yunexpress.png";
+      if (code === "ups") return `${base}/ups.png`;
+      if (code === "usps") return `${base}/usps.jpg`;
+      if (code === "fedex") return `${base}/fedex.png`;
+      if (code === "amzlus") return `${base}/amazon_orange_v3.png`;
+      if (code === "gofous") return `${base}/gofous.png`;
+      if (code === "abf") return `${base}/abf.png`;
+      if (code === "speedx") return `${base}/speedx_v2.png`;
+      if (code === "uniuni") return `${base}/uniuni.png`;
+      if (code === "ontrac") return `${base}/ontrac.png`;
+      if (code === "ont") return `${base}/ontrac.png`;
+      if (code === "gso") return `${base}/gls.png`;
+      if (code === "yun" || code === "yunexpress") return `${base}/yunexpress.png`;
 
-      return "/parcelapp_card/parcel_app_images/package.png";
+      return `${base}/package.png`;
     }
 
     _trackingUrl(delivery) {

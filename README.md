@@ -22,7 +22,8 @@ Install the companion [Parcel App Delivery Tracker](https://github.com/petergCA/
 1. In HACS, go to the three-dot menu → **Custom repositories**
 2. Add `https://github.com/petergCA/parcelapp_card` with category **Dashboard**
 3. Click **Install** on the ParcelApp Card entry
-4. Add the card to your dashboard (no restart required)
+4. Verify that the `parcel_app_images` folder and its contents were created at `/config/www/community/parcelapp_card/parcel_app_images/`. If the folder is missing, create it manually and copy the images from the [`parcel_app_images/`](https://github.com/petergCA/parcelapp_card/tree/main/parcel_app_images) folder in this repository into it.
+5. Add the card to your dashboard (no restart required)
 
 ## Manual Installation
 
@@ -31,7 +32,7 @@ Install the companion [Parcel App Delivery Tracker](https://github.com/petergCA/
 3. In Home Assistant go to **Settings → Dashboards → Resources** and add:
    - URL: `/local/parcelapp_card/parcelapp_card.js`
    - Type: **JavaScript module**
-4. Copy the `www/parcel_app_images/` folder to `/config/www/parcelapp_card/parcel_app_images/`
+4. Copy the `parcel_app_images/` folder from this repository to `/config/www/parcelapp_card/parcel_app_images/`. Verify the folder and its image files exist at that path — if not, create the `parcel_app_images` folder inside `/config/www/parcelapp_card/` and copy the images into it.
 
 ## Card Configuration
 
