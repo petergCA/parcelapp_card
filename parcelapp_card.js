@@ -562,7 +562,7 @@
     }
 
     _carrierIcon(delivery) {
-      const base = "/local/community/parcelapp_card/parcel_app_images";
+      const base = "/parcelapp/images";
 
       if (this._isDelivered(delivery)) {
         return `${base}/delivered.png`;
