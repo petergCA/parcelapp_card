@@ -549,7 +549,7 @@
     }
 
     _timingText(d) {
-      if (d.delivered) return "Delivered";
+      if (this._isDelivered(d)) return "Delivered";
       if (d.days_to_delivery === 0) return "Today is Delivery Day";
 
       if (typeof d.days_to_delivery === "number" && d.days_to_delivery > 0) {
