@@ -347,9 +347,8 @@
       if (this._config.show_today_only) {
         const showDel = this._config.show_delivered && !this._config.hide_delivered;
         list = list.filter(d => {
-          if (d.days_to_delivery === 0) return true;
-          if (showDel && this._isDelivered(d) && !d.days_to_delivery) return true;
-          return false;
+          if (this._isDelivered(d)) return showDel;
+          return d.days_to_delivery === 0;
         });
       }
 
