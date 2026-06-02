@@ -37,6 +37,7 @@
         // Apply validated defaults after spread so ?? logic is not overwritten by undefined
         title: config.title ?? "Parcel Deliveries",
         hide_delivered: config.hide_delivered ?? false,
+        show_delivered: config.show_delivered ?? true,
 
         // view controls
         show_today_only: config.show_today_only ?? false,
@@ -340,11 +341,11 @@
       let list = [...(Array.isArray(deliveries) ? deliveries : [])];
 
       // Filters
-      if (this._config.hide_delivered) {
-        list = list.filter(d => !d.delivered);
+      if (this._config.hide_delivered || !this._config.show_delivered) {
+        list = list.filter(d => !this._isDelivered(d));
       }
       if (this._config.show_today_only) {
-        list = list.filter(d => d.days_to_delivery === 0 && !d.delivered);
+        list = list.filter(d => d.days_to_delivery === 0);
       }
 
       // Sort
