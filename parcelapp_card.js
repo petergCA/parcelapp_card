@@ -560,9 +560,9 @@
 
     _isDelivered(d) {
       return (
+        Number(d.status_code) === 0 ||
         d.delivered === true ||
-        d.delivered === "true" ||
-        String(d.latest_event || d.status_code || "").toLowerCase().includes("delivered")
+        d.delivered === "true"
       );
     }
 
