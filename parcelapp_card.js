@@ -345,7 +345,12 @@
         list = list.filter(d => !this._isDelivered(d));
       }
       if (this._config.show_today_only) {
-        list = list.filter(d => d.days_to_delivery === 0);
+        const showDel = this._config.show_delivered && !this._config.hide_delivered;
+        list = list.filter(d => {
+          if (d.days_to_delivery === 0) return true;
+          if (showDel && this._isDelivered(d) && !d.days_to_delivery) return true;
+          return false;
+        });
       }
 
       // Sort
