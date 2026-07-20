@@ -1,5 +1,11 @@
 # ParcelApp Card
 
+> [!IMPORTANT]
+> **This repo is deprecated — the card is now bundled with the [Parcel App Delivery Tracker](https://github.com/petergCA/parcelapp) integration (v0.2.0+).**
+> The integration serves the card and registers the dashboard resource automatically, so a separate install is no longer needed.
+>
+> **Migrating:** update the integration to v0.2.0+ in HACS, restart Home Assistant, then remove **ParcelApp Card** from HACS (this also removes its resource entry). Your existing `custom:parcelapp-card` dashboard config keeps working unchanged.
+
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
 A Lovelace dashboard card for Home Assistant that displays your [Parcel App](https://parcelapp.net) deliveries with carrier icons, delivery timeline, and tap-to-expand event history.
