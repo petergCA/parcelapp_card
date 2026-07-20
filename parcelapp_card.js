@@ -587,6 +587,7 @@
       if (code === "ont") return `${base}/ontrac.png`;
       if (code === "gso") return `${base}/gls.png`;
       if (code === "yun" || code === "yunexpress") return `${base}/yunexpress.png`;
+      if (code === "veho") return `${base}/veho.png`;
 
       return `${base}/package.png`;
     }

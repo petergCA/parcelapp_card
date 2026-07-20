@@ -10,7 +10,7 @@ Install the companion [Parcel App Delivery Tracker](https://github.com/petergCA/
 
 ## Features
 
-- Carrier icons for UPS, USPS, FedEx, Amazon, OnTrac, ABF, SpeedX, UniUni, GLS, YunExpress, and more
+- Carrier icons for UPS, USPS, FedEx, Amazon, OnTrac, ABF, SpeedX, UniUni, GLS, YunExpress, Veho, and more
 - Tap a row to expand the full tracking event timeline
 - Long-press to open the carrier's tracking page in a new tab
 - Delivered items dim and sort to the bottom automatically
